@@ -16,3 +16,7 @@ rightmove_listings = response.text
 soup = BeautifulSoup(rightmove_listings, 'html.parser')
 
 print(soup.prettify())
+
+all_properties = soup.find_all(name='div', class_="l-searchResult")
+
+print(len(all_properties))
