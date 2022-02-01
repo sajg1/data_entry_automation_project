@@ -25,7 +25,13 @@ data = []
 for property in all_properties:
     new_dict = {}
     price = property.find(name="span", class_="propertyCard-priceValue")
+    address = property.find(name="address", class_="propertyCard-address")
+    link = property.find(name="a", class_="propertyCard-img-link")['href']
     new_dict["price"] = price.text.split(" ")[0]
+    new_dict["address"] = address.text.replace("\n", "")
+    new_dict["link"] = f"https://www.rightmove.co.uk/{link}"
+
+    print(new_dict)
     data.append(new_dict)
 
 
