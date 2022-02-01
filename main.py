@@ -20,3 +20,13 @@ print(soup.prettify())
 all_properties = soup.find_all(name='div', class_="l-searchResult")
 
 print(len(all_properties))
+
+data = []
+for property in all_properties:
+    new_dict = {}
+    price = property.find(name="span", class_="propertyCard-priceValue")
+    new_dict["price"] = price.text.split(" ")[0]
+    data.append(new_dict)
+
+
+print(data[0])
