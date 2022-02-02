@@ -41,31 +41,24 @@ print(listings)
 driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH)
 driver.get(GOOGLE_FORM_URL)
 
-time.sleep(2)
-address_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i1']")
-address_input.send_keys(listings[0]['address'])
-time.sleep(2)
-price_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i5']")
-price_input.send_keys(listings[0]['price'])
-time.sleep(2)
-link_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i9']")
-link_input.send_keys(listings[0]['link'])
-time.sleep(2)
-submit_button = driver.find_element(By.CLASS_NAME, 'appsMaterialWizButtonPaperbuttonLabel')
-submit_button.click()
-time.sleep(5)
-submit_another_button = driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/div[4]/a')
-submit_another_button.click()
-time.sleep(10)
-
-# for listing in listings:
-#     time.sleep(2)
-#     address_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i1']")
-#     address_input.send_keys(listing['address'])
+# FILL IN GOOGLE FORM FOR EACH LISTING
+for i in range(len(listings)):
+    time.sleep(2)
+    address_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i1']")
+    address_input.send_keys(listings[i]['address'])
+    time.sleep(2)
+    price_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i5']")
+    price_input.send_keys(listings[i]['price'])
+    time.sleep(2)
+    link_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i9']")
+    link_input.send_keys(listings[i]['link'])
+    time.sleep(2)
+    submit_button = driver.find_element(By.CLASS_NAME, 'appsMaterialWizButtonPaperbuttonLabel')
+    submit_button.click()
+    time.sleep(5)
+    if i <= (len(listings)-1):
+        submit_another_button = driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/div[4]/a')
+        submit_another_button.click()
+    
 
 
-# <input type="text" class="quantumWizTextinputPaperinputInput exportInput" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-labelledby="i1" aria-describedby="i2 i3" required="" dir="auto" data-initial-dir="auto" data-initial-value="">
-#
-# <input type="text" class="quantumWizTextinputPaperinputInput exportInput" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-labelledby="i5" aria-describedby="i6 i7" required="" dir="auto" data-initial-dir="auto" data-initial-value="" >
-#
-# <input type="text" class="quantumWizTextinputPaperinputInput exportInput" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-labelledby="i9" aria-describedby="i10 i11" required="" dir="auto" data-initial-dir="auto" data-initial-value="" >
