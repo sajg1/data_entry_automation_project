@@ -50,6 +50,12 @@ price_input.send_keys(listings[0]['price'])
 time.sleep(2)
 link_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i9']")
 link_input.send_keys(listings[0]['link'])
+time.sleep(2)
+submit_button = driver.find_element(By.CLASS_NAME, 'appsMaterialWizButtonPaperbuttonLabel')
+submit_button.click()
+time.sleep(5)
+submit_another_button = driver.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/div[4]/a')
+submit_another_button.click()
 time.sleep(10)
 
 # for listing in listings:
