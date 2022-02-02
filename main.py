@@ -44,6 +44,13 @@ driver.get(GOOGLE_FORM_URL)
 time.sleep(2)
 address_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i1']")
 address_input.send_keys(listings[0]['address'])
+time.sleep(2)
+price_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i5']")
+price_input.send_keys(listings[0]['price'])
+time.sleep(2)
+link_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i9']")
+link_input.send_keys(listings[0]['link'])
+time.sleep(10)
 
 # for listing in listings:
 #     time.sleep(2)
