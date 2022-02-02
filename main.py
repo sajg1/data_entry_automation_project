@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import selenium
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import requests
@@ -30,14 +30,29 @@ for result in property_results:
     price = result.find(name="span", class_="propertyCard-priceValue")
     address = result.find(name="address", class_="propertyCard-address")
     link = result.find(name="a", class_="propertyCard-img-link")['href']
-    new_dict["price"] = price.text.split(" ")[0]
     new_dict["address"] = address.text.replace("\n", "")
+    new_dict["price"] = price.text.split(" ")[0]
     new_dict["link"] = f"https://www.rightmove.co.uk/{link}"
     listings.append(new_dict)
 print(listings)
+
 # SELENIUM
 # ACCESS GOOGLE FORM AND FILL IN FOR EACH LISTING
 driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH)
 driver.get(GOOGLE_FORM_URL)
 
+time.sleep(2)
+address_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i1']")
+address_input.send_keys(listings[0]['address'])
 
+# for listing in listings:
+#     time.sleep(2)
+#     address_input = driver.find_element(By.CSS_SELECTOR, "[aria-labelledby='i1']")
+#     address_input.send_keys(listing['address'])
+
+
+# <input type="text" class="quantumWizTextinputPaperinputInput exportInput" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-labelledby="i1" aria-describedby="i2 i3" required="" dir="auto" data-initial-dir="auto" data-initial-value="">
+#
+# <input type="text" class="quantumWizTextinputPaperinputInput exportInput" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-labelledby="i5" aria-describedby="i6 i7" required="" dir="auto" data-initial-dir="auto" data-initial-value="" >
+#
+# <input type="text" class="quantumWizTextinputPaperinputInput exportInput" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-labelledby="i9" aria-describedby="i10 i11" required="" dir="auto" data-initial-dir="auto" data-initial-value="" >
